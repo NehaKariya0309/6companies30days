@@ -1,0 +1,26 @@
+class Solution {
+public:
+void solve(vector<int>num,int i,int k,int n,vector<int>subset,vector<vector<int>>&ans){
+        if(k==0 && n==0){
+              ans.push_back(subset);
+              return;
+        }
+    else if(n<=0||k<=0||i>=num.size())return;
+  
+      
+    for(int j=i;j<num.size();j++){
+    subset.push_back(num[j]);
+    solve(num,j+1,k-1,n-num[j],subset,ans);
+    subset.pop_back();
+
+    }
+}
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>>ans;
+        vector<int>subset;
+        vector<int>num={1,2,3,4,5,6,7,8,9};
+
+        solve(num,0,k,n,subset,ans);
+        return ans;
+    }
+};
